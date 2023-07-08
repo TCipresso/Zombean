@@ -4,7 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Green
+  - Zombean
+  - Map
+  - Wall
+  - floor
+  - Logic
+  - Bullet
+  - PickUp
+  - Nuke
+  - Car
+  - NorthSector
+  - SouthSector
   layers:
   - Default
   - TransparentFX
@@ -12,10 +22,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Zombean
+  - Walls
+  - Gun
   - 
   - 
   - 

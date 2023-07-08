@@ -1,36 +1,104 @@
 using System.Collections;
 using UnityEngine;
 
-
-/*
- * Spawner is simple script that will intantiate a prefab at a random location in a range of the X axis.
- * due to the y axis alwasy changing by falling only need to randomly select x axis.
- */
 public class Spawner : MonoBehaviour
 {
-    public GameObject blockPrefab; //Block that will spawn.
-    public float spawnRate = 1f; //rate at which blocks will spawn.
-    public float Min; // the minimum x position the blocks will spawn.
-    public float Max; // the maximum x position the blocks will spawn.
-
-    void Start()
+    [System.Serializable]
+    public class WeightedZombiePrefab
     {
-        StartCoroutine(SpawnBlocks());
+        public GameObject prefab;
+        public int weight = 1;
     }
 
-    IEnumerator SpawnBlocks()
+    public GameObject player;
+    private PlayerSector playerSector;
+
+    [SerializeField] private float spawnRate;
+    [SerializeField] private float initialSpawnRate;
+    [SerializeField] private float difficultyMultiplier = 1f;
+    [SerializeField] private float difficultyIncreaseInterval = 10f; 
+    [SerializeField] private WeightedZombiePrefab[] ZombeanPrefabs;
+    [SerializeField] private bool SpawnCap = true;
+    [SerializeField] public bool infiniteSpawn = false;
+    [SerializeField] private int SpawnCount;
+    public int spawnLimit;
+    [SerializeField] private int initialSpawnLimit;
+    int spawned;
+
+    
+    private Vector3 northSpawnRangeStart = new Vector3(-25f, 1.6f, 0f);
+    private Vector3 northSpawnRangeEnd = new Vector3(25f, 1.6f, 25f);
+    private Vector3 southSpawnRangeStart = new Vector3(-25f, 1.6f, -25f);
+    private Vector3 southSpawnRangeEnd = new Vector3(25f, 1.6f, 0f);
+
+    private void Start()
+    {
+        playerSector = player.GetComponent<PlayerSector>();
+        StartCoroutine(spawner());
+        StartCoroutine(IncreaseDifficulty());
+    }
+
+    private IEnumerator spawner()
+    {
+       
+        int totalWeight = 0;
+        foreach (var prefab in ZombeanPrefabs)
+            totalWeight += prefab.weight;
+
+        while (infiniteSpawn || (SpawnCap && spawned < spawnLimit))
+        {
+            WaitForSecondsRealtime wait = new WaitForSecondsRealtime(spawnRate / difficultyMultiplier);
+            yield return wait;
+
+            
+            int randWeight = Random.Range(0, totalWeight);
+            GameObject enemyToSpawn = null;
+
+            
+            foreach (var prefab in ZombeanPrefabs)
+            {
+                if (randWeight < prefab.weight)
+                {
+                    enemyToSpawn = prefab.prefab;
+                    break;
+                }
+
+                randWeight -= prefab.weight;
+            }
+
+            
+            Vector3 spawnPosition;
+            if (playerSector.currentSector == "South")
+            {
+                spawnPosition = new Vector3(
+                    Random.Range(northSpawnRangeStart.x, northSpawnRangeEnd.x),
+                    1.6f,
+                    Random.Range(northSpawnRangeStart.z, northSpawnRangeEnd.z)
+                );
+            }
+            else
+            {
+                spawnPosition = new Vector3(
+                    Random.Range(southSpawnRangeStart.x, southSpawnRangeEnd.x),
+                    1.6f,
+                    Random.Range(southSpawnRangeStart.z, southSpawnRangeEnd.z)
+                );
+            }
+
+            Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+            spawned++;
+        }
+    }
+
+    private IEnumerator IncreaseDifficulty()
     {
         while (true)
         {
-            
-            float x = Random.Range(Min, Max); //handles RNG.
-
-            // create a new position vector with the random x position and the spawner's y position
-            Vector3 spawnPosition = new Vector3(x, transform.position.y, transform.position.z);
-
-            Instantiate(blockPrefab, spawnPosition, Quaternion.identity); // instantiate a new block at the position of the Random numbers.
-
-            yield return new WaitForSeconds(spawnRate); // Spawn based on the spawnRate.
+            yield return new WaitForSeconds(difficultyIncreaseInterval);
+            difficultyMultiplier += 0.1f; // Increase difficulty by 10% = 0.1
+            spawnRate = initialSpawnRate / difficultyMultiplier;
+            spawnLimit = (int)(initialSpawnLimit * difficultyMultiplier);
+            Debug.Log("increased Difficulty");
         }
     }
 }

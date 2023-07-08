@@ -7,8 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: da6bdd9c127b8df40a4e90e0f7dfcf35
+    guid: 47054ace002632742a613eb2aefd2a2f
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Z_Roulette.unity
+    guid: ba4eca2308fb1f549ad187da65a44fa5
+  - enabled: 0
+    path: Assets/Scenes/Outbreak.unity
+    guid: cf10bffb1742b6044b4f4f7574e51cf9
   m_configObjects: {}
