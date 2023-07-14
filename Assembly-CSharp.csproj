@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\RocketLauncher.cs" />
     <Compile Include="Assets\Scripts\CODLogic.cs" />
     <Compile Include="Assets\Scripts\MapSpinTestTrigger.cs" />
+    <Compile Include="Assets\Scripts\RNGLigths.cs" />
     <Compile Include="Assets\Scripts\MapSpin.cs" />
     <Compile Include="Assets\Scripts\NUKE.cs" />
     <Compile Include="Assets\Scripts\TheBigOne.cs" />

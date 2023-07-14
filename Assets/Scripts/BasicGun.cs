@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BasicGun : MonoBehaviour
 {
-
-
     public Transform BulletSpawnPoint;
     public GameObject bulletPrefab;
     public float bulletSpeed;
@@ -18,10 +16,8 @@ public class BasicGun : MonoBehaviour
     {
         TimeBS = 1 / FireRate;
         aud = GetComponent<AudioSource>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         OnFire();
@@ -35,13 +31,10 @@ public class BasicGun : MonoBehaviour
             {
                 var bullet = Instantiate(bulletPrefab, BulletSpawnPoint.position, Quaternion.LookRotation(BulletSpawnPoint.up)); // BulletSpawnPoint.rotation
                 bullet.GetComponent<Rigidbody>().velocity = BulletSpawnPoint.up * bulletSpeed;
-                
-                //transform.Translate(Vector3.up * bulletSpeed * Time.deltaTime);
 
                 TimeBS = 1 / FireRate;
                 Instantiate(MuzzleFlashPrefab, BulletSpawnPoint.position, Quaternion.LookRotation(BulletSpawnPoint.up));//Quaternion.identity
-                aud.Play();
-                
+                aud.PlayOneShot(aud.clip);
             }
             else
             {
@@ -52,8 +45,5 @@ public class BasicGun : MonoBehaviour
         {
             TimeBS = 0f;
         }
-
     }
-
-
 }
