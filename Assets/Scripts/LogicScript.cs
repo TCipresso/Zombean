@@ -23,9 +23,10 @@ public class LogicScript : MonoBehaviour
     private Coroutine _currentPowerUpCoroutine;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        MapSpin = GameObject.FindGameObjectWithTag("Map").GetComponent<MapSpin>();
     }
 
     // Update is called once per frame
