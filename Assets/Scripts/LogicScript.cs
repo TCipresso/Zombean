@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    public MapSpin MapSpin;
+    public MapSpin MapSpin; //public MapSpin MapSpin;
     public int pointInc;
     public int pointInc2;
     public int pointIncNum2;
@@ -19,15 +19,16 @@ public class LogicScript : MonoBehaviour
     public GameObject MiniGun;
     public GameObject Shotgun;
     public GameObject RocketLauncher;
-    public PlayerStats Stats;
+    public PlayerStats Stats; //public PlayerStats Stats;
     private Coroutine _currentPowerUpCoroutine;
 
     // Start is called before the first frame update
-    void Awake()
+    void start()
     {
         Stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         MapSpin = GameObject.FindGameObjectWithTag("Map").GetComponent<MapSpin>();
     }
+
 
     // Update is called once per frame
     void Update()

@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
 
     public HealthBar healthbar;
 
-    private CameraShake Shake;
+    //private CameraShake Shake;
     public bool IsShake = false;
     public GameObject GameOverScreen;
 

@@ -15,6 +15,12 @@ TagManager:
   - Car
   - NorthSector
   - SouthSector
+  - Build
+  - Money
+  - Star
+  - Ex
+  - Skull
+  - Question
   layers:
   - Default
   - TransparentFX
