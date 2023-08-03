@@ -106,8 +106,8 @@
     <Compile Include="Assets\Scripts\SpeedPickUp.cs" />
     <Compile Include="Assets\Scripts\AOE.cs" />
     <Compile Include="Assets\Scripts\MoneyLogic.cs" />
-    <Compile Include="Assets\Scripts\FullBeanP.cs" />
     <Compile Include="Assets\Scripts\PointerTrig.cs" />
+    <Compile Include="Assets\Scripts\FullBeanP.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Imports\Polytope Studio\Lowpoly_Environments\Sources\Shaders\PT_Water_Shader_WebGl.shader" />

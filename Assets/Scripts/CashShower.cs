@@ -1,9 +1,12 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CashShower : MonoBehaviour
 {
+
+    public static CashShower Instance; // Singleton instance
+
     public GameObject CashPrefab;
     public float mapXMin;
     public float mapXMax;
@@ -11,6 +14,19 @@ public class CashShower : MonoBehaviour
     public float mapZMax;
     public float heightAboveMap;
     private bool missileLaunched = false; // New variable to track whether the cash drop has been launched
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Keeps the object alive between scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroys extra instances if more than one exists
+        }
+    }
 
     public void Spawn()
     {
@@ -39,7 +55,7 @@ public class CashShower : MonoBehaviour
             yield return new WaitForSeconds(1.5f); 
         }
 
-        missileLaunched = true;
+        missileLaunched = false;
         Destroy(gameObject, 30f); 
     }
 
