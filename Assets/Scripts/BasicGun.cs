@@ -25,6 +25,7 @@ public class BasicGun : MonoBehaviour
 
     void OnFire()
     {
+        if (MenuLogic.isPaused) return;
         if (Input.GetMouseButton(0))
         {
             if (TimeBS <= 0f)

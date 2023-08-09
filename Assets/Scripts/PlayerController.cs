@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private TimeStop timeStop; // Reference to TimeStop
     public float timeStoppedSpeed;
     public GameObject Trail;
-
+    
 
     private CharacterController controller;
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (MenuLogic.isPaused) return;
         HandRotation();
         HandleMoveInput();
     }

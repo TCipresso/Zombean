@@ -22,10 +22,10 @@ public class CashShower : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); // Keeps the object alive between scenes
         }
-        else
+        /*else
         {
             Destroy(gameObject); // Destroys extra instances if more than one exists
-        }
+        }*/
     }
 
     public void Spawn()

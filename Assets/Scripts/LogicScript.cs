@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class LogicScript : MonoBehaviour
 {
     public MapSpin MapSpin; //public MapSpin MapSpin;
-    public int pointInc;
+    public float pointInc;
     public int pointInc2;
     public int pointIncNum2;
-    public int pointIncNum;
+    public float growthFactor;
     public int PlayerHealStart;
     public int playerScore;
     public Text pointsText;
@@ -21,20 +21,25 @@ public class LogicScript : MonoBehaviour
     public GameObject RocketLauncher;
     public PlayerStats Stats; //public PlayerStats Stats;
     private Coroutine _currentPowerUpCoroutine;
+    
 
     // Start is called before the first frame update
     void start()
     {
+        StartCoroutine(ResetBasicGun());
         Stats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         MapSpin = GameObject.FindGameObjectWithTag("Map").GetComponent<MapSpin>();
+        //growthFactor = 1.5f;
+      
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
+
 
     [ContextMenu("increase score")]
     public void AddPoints()
@@ -42,18 +47,10 @@ public class LogicScript : MonoBehaviour
         playerScore += 10;
         pointsText.text = playerScore.ToString();
 
-        /*if(playerScore >= 100 + pointInc2)
-        {
-            float RNGSpinTime = Random.Range(5f, 8f);
-            MapSpin.StartSpinning(RNGSpinTime);
-            pointInc += pointIncNum2;
-
-        }*/
-
-        if (playerScore >= PlayerHealStart + pointInc) // set to 1000
+        if (playerScore >= PlayerHealStart * pointInc) // set to 1000
         {
             Stats.PlayerHealMax();
-            pointInc += pointIncNum; // set to 500
+            pointInc *= growthFactor; // Multiply by growthFactor 
             float RNGSpinTime = Random.Range(5f, 8f);
             MapSpin.StartSpinning(RNGSpinTime);
         }
@@ -168,4 +165,15 @@ public class LogicScript : MonoBehaviour
         _currentPowerUpCoroutine = null;
         Debug.Log("Full bean deactivated");
     }
+
+    public IEnumerator ResetBasicGun()
+    {
+        BasicGun.SetActive(false);
+        yield return new WaitForSecondsRealtime(0.5f);
+        BasicGun.SetActive(true);
+    }
+
+    
+
+
 }

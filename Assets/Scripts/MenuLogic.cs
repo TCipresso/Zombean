@@ -10,13 +10,17 @@ public class MenuLogic : MonoBehaviour
     // Start is called before the first frame update
     public GameObject GameOverScreen;
     public GameObject StartMenu;
-    public GameObject PauseMenu;
     public GameObject VictoryScreen;
-    public bool IsPaused = false;
+    public GameObject PauseMenu;
+    public static bool isPaused = false;
+    public AudioSource backgroundMusic;
 
 
 
-
+    void Update()
+    {
+        Escape();
+    }
 
     public void StartGameZarcade()
     {
@@ -45,37 +49,10 @@ public class MenuLogic : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+        isPaused = false;
         Time.timeScale = 1f;
     }
 
-    public void PauseGame()
-    {
-        PauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        IsPaused = true;
-    }
-
-    public void ResumeGame()
-    {
-        PauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        IsPaused = false;
-    }
-
-
-    public void OnPause()
-    {
-
-
-        if (IsPaused == true)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
-    }
 
 
 
@@ -86,4 +63,42 @@ public class MenuLogic : MonoBehaviour
         Application.Quit();
     }
 
+    public void Escape()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Pause()
+    {
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0f; // This pauses the game
+        isPaused = true;
+        if (backgroundMusic)
+        {
+            backgroundMusic.Pause();
+        }
+    }
+    public void Resume()
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1f; // This resumes the game
+        isPaused = false;
+        if (backgroundMusic)
+        {
+            backgroundMusic.Play();
+        }
+    }
 }
+
+
+

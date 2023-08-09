@@ -1,27 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CashPickUp : MonoBehaviour
 {
     public LogicScript Cash;
-    // Start is called before the first frame update
+    public AudioClip pickUpSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         Cash = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-        Destroy(gameObject, 8.4f);
+        audioSource = GetComponent<AudioSource>();
+        Destroy(gameObject, 8.5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-
             Cash.AddPoints();
 
-            Debug.Log("Cash added");
-            Destroy(gameObject);
+            PlaySoundAndDestroy();
+        }
+    }
+
+    void PlaySoundAndDestroy()
+    {
+        if (audioSource && pickUpSound)
+        {
+            audioSource.PlayOneShot(pickUpSound);
         }
 
+        
+        Collider collider = GetComponent<Collider>();
+        if (collider) collider.enabled = false;
+
+      
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        if (renderer) renderer.enabled = false;
+
+        
+        Destroy(gameObject, pickUpSound.length);
     }
 }

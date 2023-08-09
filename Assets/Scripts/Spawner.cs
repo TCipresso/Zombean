@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float spawnRate;
     [SerializeField] private float initialSpawnRate;
     [SerializeField] private float difficultyMultiplier = 1f;
-    [SerializeField] private float difficultyIncreaseInterval = 10f; 
+    [SerializeField] private float difficultyIncreaseInterval = 10f;
     [SerializeField] private WeightedZombiePrefab[] ZombeanPrefabs;
     [SerializeField] private bool SpawnCap = true;
     [SerializeField] public bool infiniteSpawn = false;
@@ -25,7 +25,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int initialSpawnLimit;
     int spawned;
 
-    
     private Vector3 northSpawnRangeStart = new Vector3(-25f, 1.6f, 0f);
     private Vector3 northSpawnRangeEnd = new Vector3(25f, 1.6f, 25f);
     private Vector3 southSpawnRangeStart = new Vector3(-25f, 1.6f, -25f);
@@ -40,21 +39,25 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator spawner()
     {
-       
         int totalWeight = 0;
         foreach (var prefab in ZombeanPrefabs)
             totalWeight += prefab.weight;
 
         while (infiniteSpawn || (SpawnCap && spawned < spawnLimit))
         {
+            if (MenuLogic.isPaused) // Check if the game is paused
+            {
+                yield return null; // Wait for next frame
+                continue; // Skip the rest of the loop iteration
+            }
+
             WaitForSecondsRealtime wait = new WaitForSecondsRealtime(spawnRate / difficultyMultiplier);
             yield return wait;
 
-            
             int randWeight = Random.Range(0, totalWeight);
             GameObject enemyToSpawn = null;
 
-            
+
             foreach (var prefab in ZombeanPrefabs)
             {
                 if (randWeight < prefab.weight)
@@ -66,7 +69,7 @@ public class Spawner : MonoBehaviour
                 randWeight -= prefab.weight;
             }
 
-            
+
             Vector3 spawnPosition;
             if (playerSector.currentSector == "South")
             {
@@ -94,6 +97,12 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
+            if (MenuLogic.isPaused) // Check if the game is paused
+            {
+                yield return null; // Wait for next frame
+                continue; // Skip the rest of the loop iteration
+            }
+
             yield return new WaitForSeconds(difficultyIncreaseInterval);
             difficultyMultiplier += 0.1f; // Increase difficulty by 10% = 0.1
             spawnRate = initialSpawnRate / difficultyMultiplier;

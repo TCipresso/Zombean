@@ -6,17 +6,29 @@ public class MapSpin : MonoBehaviour
     public float maxSpinSpeed = 100;
     private bool isSpinning;
     private float currentSpinSpeed;
+    private int spinDirection = 1;
 
     private void Update()
     {
         if (isSpinning)
         {
-            transform.Rotate(Vector3.up, currentSpinSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up, currentSpinSpeed * spinDirection * Time.deltaTime);
         }
     }
 
     public void StartSpinning(float duration)
     {
+        if (Random.Range(0, 2) == 0)
+        {
+            spinDirection = 1;
+        }
+        else
+        {
+            spinDirection = -1;
+        }
+
+        currentSpinSpeed = Random.Range(maxSpinSpeed * 0.5f, maxSpinSpeed);
+
         isSpinning = true;
         StartCoroutine(SpinAndSlowDown(duration));
     }
@@ -28,8 +40,6 @@ public class MapSpin : MonoBehaviour
         while (elapsed < duration)
         {
             float normalizedTime = elapsed / duration;
-
-            // Using a squared curve for deceleration
             currentSpinSpeed = maxSpinSpeed * (1 - normalizedTime * normalizedTime);
 
             elapsed += Time.deltaTime;
