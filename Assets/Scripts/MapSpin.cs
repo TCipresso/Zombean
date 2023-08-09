@@ -7,15 +7,8 @@ public class MapSpin : MonoBehaviour
     private bool isSpinning;
     private float currentSpinSpeed;
 
-    /*private void Start()
-    {
-        StartSpinning(5); // Spins for 5 seconds
-    }*/
-
-
     private void Update()
     {
-        
         if (isSpinning)
         {
             transform.Rotate(Vector3.up, currentSpinSpeed * Time.deltaTime);
@@ -24,7 +17,6 @@ public class MapSpin : MonoBehaviour
 
     public void StartSpinning(float duration)
     {
-        
         isSpinning = true;
         StartCoroutine(SpinAndSlowDown(duration));
     }
@@ -35,19 +27,15 @@ public class MapSpin : MonoBehaviour
 
         while (elapsed < duration)
         {
-            
             float normalizedTime = elapsed / duration;
 
-            
-            currentSpinSpeed = Mathf.Lerp(maxSpinSpeed, 0, normalizedTime);
+            // Using a squared curve for deceleration
+            currentSpinSpeed = maxSpinSpeed * (1 - normalizedTime * normalizedTime);
 
-            
             elapsed += Time.deltaTime;
-
             yield return null;
         }
 
-        
         currentSpinSpeed = 0;
         isSpinning = false;
     }

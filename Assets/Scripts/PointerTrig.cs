@@ -5,47 +5,77 @@ using UnityEngine;
 public class PointerTrig : MonoBehaviour
 {
     public CashShower Cash;
+    public Hazard Haz;
+    public SkullBoss Skull;
+    public Laserbeam Laser;
+    public Build bob;
+
+    private Dictionary<string, float> sectionEntryTimes = new Dictionary<string, float>();
+    private const float THRESHOLD_TIME = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         Cash = GetComponent<CashShower>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Haz = GetComponent<Hazard>();
+        Skull = GetComponent<SkullBoss>();
+        Laser = GetComponent<Laserbeam>();
+        bob = GetComponent<Build>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Build"))
+        if (!sectionEntryTimes.ContainsKey(other.tag))
         {
-            //Debug.Log("Build activated");
+            sectionEntryTimes.Add(other.tag, Time.time);
         }
-        else if (other.CompareTag("Skull"))
-        {
-            //Debug.Log("Skull Activated");
-        }
-        else if (other.CompareTag("Money"))
-        {
-            Debug.Log("Money Activated");
-            CashShower.Instance.Spawn();
-        }
-        else if (other.CompareTag("Star"))
-        {
-            //Debug.Log("Star Activated");
-        }
-        else if (other.CompareTag("Ex"))
-        {
-            //Debug.Log("Ex Activated");
-        }
-        else if (other.CompareTag("Question"))
-        {
-            //Debug.Log("Question Activated");
-        }
-
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (sectionEntryTimes.ContainsKey(other.tag) && Time.time - sectionEntryTimes[other.tag] > THRESHOLD_TIME)
+        {
+            TriggerEventForTag(other.tag);
+            sectionEntryTimes.Clear(); // Clear the dictionary after triggering an event.
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (sectionEntryTimes.ContainsKey(other.tag))
+        {
+            sectionEntryTimes.Remove(other.tag);
+        }
+    }
+
+    private void TriggerEventForTag(string tag)
+    {
+        switch (tag)
+        {
+            case "Build":
+                Debug.Log("Build activated");
+                bob.Construct();
+                break;
+            case "Skull":
+                Debug.Log("Skull Activated");
+                Skull.SpawnSkull();
+                break;
+            case "Money":
+                Debug.Log("Money Activated");
+                CashShower.Instance.Spawn();
+                break;
+            case "Star":
+                Debug.Log("Star Activated");
+                Laser.FireLasers();
+                break;
+            case "Ex":
+                Debug.Log("Ex Activated");
+                Haz.SpawnHazard();
+                break;
+            case "Question":
+                Debug.Log("Question Activated");
+                // Handle question logic here
+                break;
+        }
+    }
 }

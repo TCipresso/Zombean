@@ -56,11 +56,14 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Build.cs" />
     <Compile Include="Assets\Scripts\Rain.cs" />
     <Compile Include="Assets\Scripts\StringBeanBehavior.cs" />
     <Compile Include="Assets\Scripts\PoliceLights.cs" />
     <Compile Include="Assets\Scripts\RocketLauncher.cs" />
     <Compile Include="Assets\Scripts\CODLogic.cs" />
+    <Compile Include="Assets\Prefabs\Hazards\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Hazard.cs" />
     <Compile Include="Assets\Scripts\MapSpinTestTrigger.cs" />
     <Compile Include="Assets\Scripts\RNGLigths.cs" />
     <Compile Include="Assets\Scripts\MapSpin.cs" />
@@ -72,11 +75,14 @@
     <Compile Include="Assets\Scripts\CashPickUp.cs" />
     <Compile Include="Assets\Scripts\NukeP.cs" />
     <Compile Include="Assets\Scripts\BasicZombeanBehavior.cs" />
+    <Compile Include="Assets\Materials\PulseEffect.cs" />
     <Compile Include="Assets\Scripts\ShotgunBlast.cs" />
     <Compile Include="Assets\Scripts\CircleOFDeath.cs" />
+    <Compile Include="Assets\Prefabs\Hazards\Laserbeam.cs" />
     <Compile Include="Assets\Scripts\LimaBeanBehavior.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\MenuLogic.cs" />
+    <Compile Include="Assets\Scripts\SkullBoss.cs" />
     <Compile Include="Assets\Scripts\HealPickUp.cs" />
     <Compile Include="Assets\Scripts\Orbit.cs" />
     <Compile Include="Assets\Imports\Polytope Studio\Lowpoly_Demos\Environment_Free\Helpers\MouseLook.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="Assets\Scripts\BasicGun.cs" />
     <Compile Include="Assets\Scripts\MiniGun.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\WarningSCript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\PlayerSector.cs" />

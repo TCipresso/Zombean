@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public GameObject explosionPrefab;
     public bool IsStringBean;
 
+
     void Start()
     {
         Points = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
@@ -22,22 +23,22 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            
+
             if (Random.value <= dropChance)
             {
-                
+
                 GameObject powerUpPrefab = powerUps[Random.Range(0, powerUps.Length)];
                 GameObject Intance = Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
                 Destroy(Intance, 10f);
             }
             if (IsStringBean)
             {
-                GameObject explosionInstance = Instantiate(explosionPrefab, transform.position, Quaternion.identity); 
-                
-                
+                GameObject explosionInstance = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+
 
             }
-
+            
             Destroy(gameObject);
             Points.AddPoints();
 

@@ -11,7 +11,7 @@ public class BasicZombeanBehavior : MonoBehaviour
     private Transform player;
     public Rigidbody rb;
     public int damage;
-    
+
 
     private float Speed;
     private CameraShake Shake;
@@ -22,7 +22,7 @@ public class BasicZombeanBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
         Speed = Random.Range(6f, 10f);
-        
+
 
     }
 
@@ -39,8 +39,8 @@ public class BasicZombeanBehavior : MonoBehaviour
     public void OnCollisionStay(Collision collision)
     {
 
-        
-        if(collision.collider.tag == "Wall" )
+
+        if (collision.collider.tag == "Wall")
         {
             //Debug.Log("wall collision");
             rb.isKinematic = false;
@@ -49,21 +49,21 @@ public class BasicZombeanBehavior : MonoBehaviour
         {
             rb.isKinematic = false;
         }*/
-        else if(collision.collider.tag == "Player") 
+        else if (collision.collider.tag == "Player")
         {
-            
+
             Debug.Log("player - 10");
             rb.isKinematic = true;
             PlayerStats playerS = collision.gameObject.transform.gameObject.GetComponent<PlayerStats>();
             playerS.TakeDamageP(damage);
-            
-            
-            
+
+
+
 
         }
-        
 
-        
+
+
     }
 
 
