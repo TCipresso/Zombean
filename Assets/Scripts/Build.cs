@@ -12,12 +12,12 @@ public class Build : MonoBehaviour
 
     private void Start()
     {
-        // Add all the building GameObjects to the list.
+        
         buildings.Add(Build1);
         buildings.Add(Build2);
         buildings.Add(Build3);
 
-        // Initially set all the buildings inactive.
+       
         foreach (GameObject building in buildings)
         {
             building.SetActive(false);
@@ -26,13 +26,13 @@ public class Build : MonoBehaviour
 
     public void Construct()
     {
-        // First, deactivate all buildings to ensure only one is active at a time.
+        
         foreach (GameObject building in buildings)
         {
             building.SetActive(false);
         }
 
-        // Randomly pick and activate one of the buildings.
+        
         int randomIndex = Random.Range(0, buildings.Count);
         buildings[randomIndex].SetActive(true);
     }

@@ -875,9 +875,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 0}
   StartMenu: {fileID: 1301233210}
-  PauseMenu: {fileID: 0}
   VictoryScreen: {fileID: 0}
-  IsPaused: 0
+  PauseMenu: {fileID: 0}
+  OptionsMenu: {fileID: 0}
+  audioMixer: {fileID: 0}
+  backgroundMusic: {fileID: 0}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!4 &1394500421
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,7 +1060,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Zombean Demo
+  m_Text: Zombean
 --- !u!222 &1694594927
 CanvasRenderer:
   m_ObjectHideFlags: 0

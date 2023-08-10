@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PulseEffect : MonoBehaviour
 {
-    public float blinkInterval = 0.5f; // The time interval between blinks
+    public float blinkInterval = 0.5f; 
     private MeshRenderer meshRenderer;
     private bool isRendererOn = true;
     private float timer;
@@ -18,7 +18,7 @@ public class PulseEffect : MonoBehaviour
             return;
         }
 
-        timer = blinkInterval; // Start with the interval so it blinks immediately upon starting
+        timer = blinkInterval; 
     }
 
     void Update()

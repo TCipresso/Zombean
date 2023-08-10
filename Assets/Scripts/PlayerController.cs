@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     private float originalMoveSpeed;
     private Vector3 playerVelocity;
-    private TimeStop timeStop; // Reference to TimeStop
+    private TimeStop timeStop; 
     public float timeStoppedSpeed;
     public GameObject Trail;
     
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         originalMoveSpeed = moveSpeed;
         controller = GetComponent<CharacterController>();
         mainCamera = FindObjectOfType<Camera>();
-        timeStop = FindObjectOfType<TimeStop>(); // Find the TimeStop script
+        timeStop = FindObjectOfType<TimeStop>(); 
     }
 
     // Update is called once per frame

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
-    public GameObject prefab; // Reference to the prefab
+    public GameObject prefab; 
     public Vector3 spawnPosition;
     public float HazardDuration;
 
     private GameObject SpawnedHazard;
-    // Start is called before the first frame update
+    
     void Start()
     {
         //SpawnHazard();

@@ -36,7 +36,7 @@ public class PointerTrig : MonoBehaviour
         if (sectionEntryTimes.ContainsKey(other.tag) && Time.time - sectionEntryTimes[other.tag] > THRESHOLD_TIME)
         {
             TriggerEventForTag(other.tag);
-            sectionEntryTimes.Clear(); // Clear the dictionary after triggering an event.
+            sectionEntryTimes.Clear(); 
         }
     }
 

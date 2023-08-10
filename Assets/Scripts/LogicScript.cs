@@ -50,7 +50,7 @@ public class LogicScript : MonoBehaviour
         if (playerScore >= PlayerHealStart * pointInc) // set to 1000
         {
             Stats.PlayerHealMax();
-            pointInc *= growthFactor; // Multiply by growthFactor 
+            pointInc *= growthFactor; 
             float RNGSpinTime = Random.Range(5f, 8f);
             MapSpin.StartSpinning(RNGSpinTime);
         }

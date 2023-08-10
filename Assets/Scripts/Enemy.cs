@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public LogicScript Points;
     public int health;
     public int Money;
-    public GameObject[] powerUps; // array of power up prefabs
+    public GameObject[] powerUps; 
     public float dropChance = 0.1f; // 10% drop chance
     public GameObject explosionPrefab;
     public bool IsStringBean;

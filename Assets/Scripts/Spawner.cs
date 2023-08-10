@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -45,10 +46,10 @@ public class Spawner : MonoBehaviour
 
         while (infiniteSpawn || (SpawnCap && spawned < spawnLimit))
         {
-            if (MenuLogic.isPaused) // Check if the game is paused
+            if (MenuLogic.isPaused) 
             {
-                yield return null; // Wait for next frame
-                continue; // Skip the rest of the loop iteration
+                yield return null;
+                continue; 
             }
 
             WaitForSecondsRealtime wait = new WaitForSecondsRealtime(spawnRate / difficultyMultiplier);
@@ -97,10 +98,10 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            if (MenuLogic.isPaused) // Check if the game is paused
+            if (MenuLogic.isPaused) 
             {
-                yield return null; // Wait for next frame
-                continue; // Skip the rest of the loop iteration
+                yield return null; 
+                continue; 
             }
 
             yield return new WaitForSeconds(difficultyIncreaseInterval);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkullBoss : MonoBehaviour
 {
-    public GameObject prefab; // Reference to the prefab
+    public GameObject prefab; 
     public Vector3 spawnPosition;
     public float BossDuration;
 
