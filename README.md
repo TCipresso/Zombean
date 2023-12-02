@@ -54,3 +54,10 @@ Health Drop(Grey): Upon picking up Heal 50 hp. Gives Player a way to heal very r
 
 NUKE: Upon picking up a nuke will drop from the sky instantly killing all zombeans currently on the map with a massive mushroom cloud. Will kill all zombeans Except ZOMBOSS.
 
+# Zombeans (Zombie types 3)
+Red Bean: Nomral zombean the basic generic one. Spawns with a random movement speed value to create some variance.
+
+Lima Bean: The big green beans. This one is very slow, but very wide. It can block bullets and tank more giving the other beans time to close the gap to the player.
+
+String bean: The Speedy bean. Smaller hit box incredible speed. Very little hp. These are meant to be a top priority for the player ot take out. They even explode on death.
+
